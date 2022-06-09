@@ -3,6 +3,7 @@ const app = express();
 const routerProductos = require('./routerProductos');
 const routerCarrito = require('./routerCarrito');
 app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 
 app.use('/api/productos', routerProductos);
 app.use('/api/carrito', routerCarrito);

@@ -12,7 +12,7 @@ const checkFile = async (nombreArchivo) => {
     }
 }
 
-class Contenedor {
+class ContenedorProductos {
 
     constructor(nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
@@ -51,6 +51,7 @@ class Contenedor {
             }else{
                 objeto.id = contenido[longitud - 1].id + 1;
             }
+            objeto.timestapm = Date.now();
             contenido.push(objeto);
             await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(contenido));
             return objeto;
@@ -68,8 +69,9 @@ class Contenedor {
         if (index == -1) {
             return { error: 'El producto no existe' }
         } else {
-            contenido[index].timestapm = producto.timestapm;
             contenido[index].nombre = producto.nombre;
+            contenido[index].descripcion = producto.descripcion;
+            contenido[index].timestapm = Date.now()
             contenido[index].codigo = producto.codigo;
             contenido[index].foto = producto.foto;
             contenido[index].precio = producto.precio;
@@ -93,4 +95,4 @@ class Contenedor {
         } 
     }
 };
-module.exports = Contenedor;
+module.exports = ContenedorProductos;
